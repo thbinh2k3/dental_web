@@ -22,6 +22,8 @@ export async function sendConsultationEmail(data: FormData) {
   console.log("Sending email with data:", validatedData)
 
   // Example of how to set up nodemailer (uncomment and configure in production)
+
+  console.log("SMTP_HOST:", process.env.SMTP_HOST)
   
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
