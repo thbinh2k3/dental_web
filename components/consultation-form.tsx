@@ -4,15 +4,22 @@ import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Mail, Phone, User } from "lucide-react"
+import { Mail, Phone, User, CheckCircle2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-// Update the import path below if your form components are located elsewhere
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
-//import { useToast } from "@/components/ui/use-toast"
+import { toast } from "sonner"
 import { sendConsultationEmail } from "@/app/action"
 
 const formSchema = z.object({
@@ -32,7 +39,6 @@ const formSchema = z.object({
 })
 
 export default function ConsultationForm() {
-  //const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,18 +55,29 @@ export default function ConsultationForm() {
     setIsSubmitting(true)
     try {
       await sendConsultationEmail(values)
-    //   toast({
-    //     title: "Gửi yêu cầu tư vấn thành công!",
-    //     description: "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
-    //     variant: "default",
-    //   })
-    //   form.reset()
-    // } catch (error) {
-    //   toast({
-    //     title: "Có lỗi xảy ra",
-    //     description: "Không thể gửi yêu cầu tư vấn. Vui lòng thử lại sau.",
-    //     variant: "destructive",
-    //   })
+
+      toast(
+        <div className="flex items-center space-x-3">
+          <CheckCircle2 className="text-green-500 w-7 h-7" />
+          <div>
+            <div className="font-bold text-lg text-green-700">Gửi yêu cầu tư vấn thành công!</div>
+            <div className="text-base text-gray-700">
+              Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
+            </div>
+          </div>
+        </div>
+      )
+
+      form.reset()
+    } catch{
+      toast(
+        <div>
+          <div className="font-semibold text-red-600">Có lỗi xảy ra</div>
+          <div className="text-sm text-gray-600">
+            Không thể gửi yêu cầu tư vấn. Vui lòng thử lại sau.
+          </div>
+        </div>
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -78,6 +95,7 @@ export default function ConsultationForm() {
           <div className="rounded-lg bg-white p-6 shadow-md md:p-8">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Họ và tên */}
                 <FormField
                   control={form.control}
                   name="name"
@@ -95,6 +113,7 @@ export default function ConsultationForm() {
                   )}
                 />
 
+                {/* Số điện thoại */}
                 <FormField
                   control={form.control}
                   name="phone"
@@ -112,6 +131,7 @@ export default function ConsultationForm() {
                   )}
                 />
 
+                {/* Email */}
                 <FormField
                   control={form.control}
                   name="email"
@@ -129,6 +149,7 @@ export default function ConsultationForm() {
                   )}
                 />
 
+                {/* Dịch vụ */}
                 <FormField
                   control={form.control}
                   name="service"
@@ -160,6 +181,7 @@ export default function ConsultationForm() {
                   )}
                 />
 
+                {/* Ghi chú */}
                 <FormField
                   control={form.control}
                   name="message"

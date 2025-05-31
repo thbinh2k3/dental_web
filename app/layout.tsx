@@ -7,7 +7,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Dental - Dịch Vụ Nha Khoa Chất Lượng Cao",
+  title: "Dịch Vụ Nha Khoa ",
   description: "Cung cấp dịch vụ cạo vôi và trám răng sứ chất lượng cao với đội ngũ bác sĩ giàu kinh nghiệm",
 }
 
