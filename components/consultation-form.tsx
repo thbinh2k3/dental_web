@@ -69,7 +69,7 @@ export default function ConsultationForm() {
       )
 
       form.reset()
-    } catch{
+    } catch {
       toast(
         <div>
           <div className="font-semibold text-red-600">Có lỗi xảy ra</div>
@@ -84,15 +84,19 @@ export default function ConsultationForm() {
   }
 
   return (
-    <section className="bg-gray-50 py-16" id="consultation">
+    <section className="bg-gradient-to-b from-slate-50 to-teal-50/30 py-20" id="consultation">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-2 text-center text-3xl font-bold text-gray-900">Đăng Ký Tư Vấn</h2>
-          <p className="mb-8 text-center text-gray-600">
-            Điền thông tin của bạn dưới đây để nhận tư vấn miễn phí từ đội ngũ chuyên gia của chúng tôi
+          <span className="mb-3 block text-center text-sm font-semibold uppercase tracking-wide text-teal-700">
+            Đặt lịch
+          </span>
+          <h2 className="mb-2 text-center text-3xl font-bold text-slate-900 md:text-4xl">Đăng ký tư vấn miễn phí</h2>
+          <p className="mb-8 text-center text-slate-600">
+            Điền form bên dưới — chúng tôi liên hệ trong vòng{" "}
+            <strong className="text-teal-700">15 phút</strong> trong giờ làm việc.
           </p>
 
-          <div className="rounded-lg bg-white p-6 shadow-md md:p-8">
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-xl shadow-slate-200/50 md:p-10">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 {/* Họ và tên */}
@@ -149,7 +153,6 @@ export default function ConsultationForm() {
                   )}
                 />
 
-                {/* Dịch vụ */}
                 <FormField
                   control={form.control}
                   name="service"
@@ -160,19 +163,19 @@ export default function ConsultationForm() {
                         <RadioGroup
                           onValueChange={field.onChange}
                           defaultValue={field.value}
-                          className="flex flex-col space-y-1"
+                          className="grid gap-3 sm:grid-cols-2"
                         >
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rounded-xl border border-slate-200 px-4 py-3 has-[[data-state=checked]]:border-teal-500 has-[[data-state=checked]]:bg-teal-50">
                             <FormControl>
-                              <RadioGroupItem value="scaling" />
+                              <RadioGroupItem value="scaling" className="border-teal-600 text-teal-600" />
                             </FormControl>
-                            <FormLabel className="font-normal">Cạo vôi</FormLabel>
+                            <FormLabel className="cursor-pointer font-normal">Cạo vôi &amp; đánh bóng</FormLabel>
                           </FormItem>
-                          <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormItem className="flex items-center space-x-3 space-y-0 rounded-xl border border-slate-200 px-4 py-3 has-[[data-state=checked]]:border-teal-500 has-[[data-state=checked]]:bg-teal-50">
                             <FormControl>
-                              <RadioGroupItem value="porcelain" />
+                              <RadioGroupItem value="porcelain" className="border-teal-600 text-teal-600" />
                             </FormControl>
-                            <FormLabel className="font-normal">Trám răng sứ</FormLabel>
+                            <FormLabel className="cursor-pointer font-normal">Trám răng sứ</FormLabel>
                           </FormItem>
                         </RadioGroup>
                       </FormControl>
@@ -181,7 +184,6 @@ export default function ConsultationForm() {
                   )}
                 />
 
-                {/* Ghi chú */}
                 <FormField
                   control={form.control}
                   name="message"
@@ -203,9 +205,16 @@ export default function ConsultationForm() {
                   )}
                 />
 
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Đang gửi..." : "Gửi yêu cầu tư vấn"}
+                <Button
+                  type="submit"
+                  className="h-12 w-full rounded-full bg-teal-600 text-base font-semibold shadow-lg shadow-teal-600/20 hover:bg-teal-700"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Đang gửi..." : "Gửi yêu cầu — Đặt lịch miễn phí"}
                 </Button>
+                <p className="text-center text-xs text-slate-500">
+                  Thông tin của bạn được bảo mật và chỉ dùng để liên hệ tư vấn.
+                </p>
               </form>
             </Form>
           </div>

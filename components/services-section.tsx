@@ -1,89 +1,89 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { SmileIcon as Tooth } from "lucide-react"
-import { Scaling } from "lucide-react"
+import Link from "next/link"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Scaling, Sparkles } from "lucide-react"
+import { SectionHeading } from "@/components/section-heading"
+
+const services = [
+  {
+    icon: Scaling,
+    title: "Cạo vôi & đánh bóng",
+    description: "Làm sạch cao răng, mảng bám và các vết ố — phòng ngừa bệnh nha chu hiệu quả.",
+    price: "Từ 200.000đ",
+    features: [
+      "Loại bỏ cao răng và mảng bám",
+      "Làm sạch vùng dưới nướu",
+      "Đánh bóng bề mặt răng",
+      "Cải thiện hơi thở",
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: "Trám răng sứ",
+    description: "Phục hồi răng bị hư hỏng với vật liệu sứ cao cấp, màu sắc tự nhiên.",
+    price: "Từ 500.000đ / răng",
+    features: [
+      "Phục hồi răng sâu, mẻ, vỡ",
+      "Vật liệu sứ cao cấp, bền đẹp",
+      "Không chứa thủy ngân, an toàn",
+      "Tuổi thọ cao, ít đổi màu",
+    ],
+  },
+]
 
 export default function ServicesSection() {
   return (
-    <section className="py-16" id="services">
+    <section className="py-20" id="services">
       <div className="container mx-auto px-4">
-        <h2 className="mb-12 text-center text-3xl font-bold text-gray-900">Dịch Vụ Của Chúng Tôi</h2>
+        <SectionHeading
+          label="Dịch vụ"
+          title="Giải pháp nha khoa chuyên sâu"
+          description="Bảng giá minh bạch, tư vấn chi tiết trước khi điều trị — không phát sinh bất ngờ."
+        />
         <div className="grid gap-8 md:grid-cols-2">
-          <Card className="overflow-hidden transition-all hover:shadow-lg">
-            <CardHeader className="bg-sky-50 pb-6">
-              <div className="mb-2 flex justify-center">
-                <div className="rounded-full bg-sky-100 p-3">
-                  <Scaling className="h-8 w-8 text-sky-600" />
+          {services.map((service) => (
+            <Card
+              key={service.title}
+              className="group overflow-hidden border-slate-100 shadow-sm transition-all hover:-translate-y-1 hover:border-teal-100 hover:shadow-xl"
+            >
+              <CardHeader className="border-b border-slate-50 bg-gradient-to-br from-teal-50 to-cyan-50/50 pb-6">
+                <div className="mb-3 flex items-start justify-between">
+                  <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-teal-100">
+                    <service.icon className="h-8 w-8 text-teal-600" />
+                  </div>
+                  <span className="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-800 ring-1 ring-amber-100">
+                    {service.price}
+                  </span>
                 </div>
-              </div>
-              <CardTitle className="text-center text-2xl">Cạo Vôi</CardTitle>
-              <CardDescription className="text-center text-gray-600">
-                Làm sạch cao răng, mảng bám và các vết ố
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Loại bỏ cao răng và mảng bám</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Làm sạch vùng dưới nướu</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Đánh bóng bề mặt răng</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Phòng ngừa các bệnh nha chu</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Cải thiện hơi thở</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden transition-all hover:shadow-lg">
-            <CardHeader className="bg-sky-50 pb-6">
-              <div className="mb-2 flex justify-center">
-                <div className="rounded-full bg-sky-100 p-3">
-                  <Tooth className="h-8 w-8 text-sky-600" />
-                </div>
-              </div>
-              <CardTitle className="text-center text-2xl">Trám Răng Sứ</CardTitle>
-              <CardDescription className="text-center text-gray-600">
-                Phục hồi răng bị hư hỏng với vật liệu sứ cao cấp
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Phục hồi răng bị sâu, mẻ, vỡ</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Vật liệu sứ cao cấp, bền đẹp</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Màu sắc tự nhiên, phù hợp với răng thật</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Không chứa thủy ngân, an toàn cho sức khỏe</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2 text-sky-600">✓</span>
-                  <span>Tuổi thọ cao, ít bị đổi màu theo thời gian</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+                <CardTitle className="text-2xl text-slate-900">{service.title}</CardTitle>
+                <CardDescription className="text-base text-slate-600">{service.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <ul className="space-y-2.5">
+                  {service.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-slate-700">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-100 text-xs font-bold text-teal-700">
+                        ✓
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="border-t border-slate-50 bg-slate-50/50 pt-6">
+                <Button
+                  asChild
+                  className="w-full rounded-full bg-teal-600 hover:bg-teal-700"
+                >
+                  <Link href="#consultation">Đặt lịch dịch vụ này</Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
+        <p className="mt-8 text-center text-sm text-slate-500">
+          * Giá có thể thay đổi tùy tình trạng răng. Liên hệ để nhận báo giá chính xác.
+        </p>
       </div>
     </section>
   )
